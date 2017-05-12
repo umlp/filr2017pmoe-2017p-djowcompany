@@ -1,20 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>Prototype - Projetchaos</title>
+        <title>Prototype - Projetchaos</title>
 
-      <!-- Fonts -->
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-      <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+        <!-- Fonts -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
-      <!-- Styles -->
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body id="app-layout">
-  
+        <!-- Styles -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body id="app-layout">
+
+      <!--
+      Accueil
+    - données d'entrées : visualition de l'accueil et des onglets uniquement
+    - données de sorties : attente d'un choix d'onglet uniquement
+        -->
+
+      <!--
+  Ajout d'un onglet : visualiser incidents
+  - données d'entrées : incidents en cours sur le transport sélectionné par l'utilisateur
+  - données de sorties : choix du transport
+        -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><div class="navbar-brand text-center">Projet Chaos</div></li>
+                        <li class="active"><a href="#" id="accueil">Accueil</a></li>
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Signaler<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="debut">Début d'un incident</a></li>
+                            <li><a href="#" id="fin">Fin d'un incident</a></li>
+                        </ul>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </nav>
+        <div id="corpsAccueil">
+            <img src="https://i.ytimg.com/vi/6JEjp3Mt-co/maxresdefault.jpg"/>
+        </div>
+
+        <!--
+        Signaler un incident
+    - données d'entrées : les différents transports possibles
+    - données de sorties : entrée des caractéristiques de l'incident
+          -->
+        <div id="corpsDebut">
+            <div class="container">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Signaler un incident</h2>
+                            <div class="panel-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="choixLigne">Ligne de Transport</label>
+                                        <select class=form-control type="choixLigne">
+                                            <option selected="selected" disabled>Choisissez la ligne de transport...</option>
+                                            <option value=un>27</option>
+                                            <option value=deux>42</option>
+                                            <option value=trois>Métro Tartamoule</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-2 text-center" ><label for="choixCause">Cause</label></div>
+                                            <div class="col-sm-10"><input type="text" class="form-control" name="Cause" id="choixCause"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-2 text-center" ><label for="choixDebut">Heure de début</label></div>
+                                            <div class="col-sm-10"><input type="text" class="form-control" name="Debut" id="choixDebut"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-2 text-center" ><label for="choixFin">Heure de fin (estimée)</label></div>
+                                            <div class="col-sm-10"><input type="text" class="form-control" name="Fin" id="choixFin"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-2 text-center" ><label for="choixInformations">Informations supp.</label></div>
+                                            <div class="col-sm-10"><input type="text" class="form-control" name="Informations" id="choixInformations"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default btn-success">Signaler</button>
+                                        <button type="reset" class="btn btn-default btn-danger">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        Signaler la fin d'un incident
+        - données d'entrées : les différents transports possibles + les incidents en cours sur ce transport
+        - données de sorties : indication sur la fin de l'incident
+          -->
+        <div id="corpsFin">
+                <div class="container">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2>Signaler la fin d'un incident</h2>
+                                <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="choixLigne">Ligne de Transport</label>
+                                            <select class=form-control type="choixLigne">
+                                                <option selected="selected" disabled>Choisissez la ligne de transport...</option>
+                                                <option value=un>27</option>
+                                                <option value=deux>42</option>
+                                                <option value=trois>Métro Tartamoule</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="choixIncident">Incident</label>
+                                            <select class=form-control type="choixLigne">
+                                                <option selected="selected" disabled>Choisissez l'incident...</option>
+                                                <option value=un>Incident1</option>
+                                                <option value=deux>Incident2</option>
+                                                <option value=trois>Incident3</option>
+                                                <option value=quatre>Incident4</option>
+                                                <option value=cinq>Incident5</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2 text-center" ><label for="choixInformations">Informations supp.</label></div>
+                                                <div class="col-sm-10"><input type="text" class="form-control" name="Informations" id="choixInformations"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-default btn-success">Déclarer l'incident terminé</button>
+                                            <button type="reset" class="btn btn-default btn-danger">Annuler</button>
+                                        </div>
+                                    </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://casisbelli-03.insa-rouen.fr/fermefilr/z/fork/quickstart-basic/public/index.php">
+                    Task List
+                </a>
+            </div>
+        </div>
+    </nav>
+-->
+    <footer>
+      <!-- JavaScripts -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+      // <!--
+          function cacherAccueil(){
+              $("#corpsAccueil").hide();
+          }
+          function cacherDebut(){
+              $("#corpsDebut").hide();
+          }
+
+          function cacherFin(){
+              $("#corpsFin").hide();
+          }
+
+          function montrerAccueil(){
+              $("#corpsAccueil").show();
+          }
+          function montrerDebut(){
+              $("#corpsDebut").show();
+          }
+
+          function montrerFin(){
+              $("#corpsFin").show();
+          }
+          $(document).ready(function(){
+              cacherDebut();
+              cacherFin();
+              $("#debut").click(function(){cacherAccueil(); cacherFin(); montrerDebut();});
+              $("#fin").click(function(){cacherAccueil(); cacherDebut(); montrerFin();});
+              $("#accueil").click(function(){montrerAccueil(); cacherDebut(); cacherFin();});
+          });
+      // -->
+      </script>
+    </footer>
   </body>
 </html>
